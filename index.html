@@ -1,4 +1,15 @@
 <script>
-    location.href="sms://#0011&body=이달의소녀"
-    //location.href="http://naver.com"
+    function checkMobile() {
+    var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
+
+    if (varUA.indexOf('android') > -1) {    // 안드로이드
+        return "android";
+    } else if (varUA.indexOf('iphone') > -1 || varUA.indexOf('ipad') > -1 || varUA.indexOf('ipod') > -1 || varUA.indexOf('ios') > -1) {    // IOS
+        return "ios";
+    } else {    // IOS, 안드로이드 외
+        return "other";
+    }
+}
+    var url = 'sms:' +(checkMobile() === 'ios' ? '&' : '?') + 'body=이달의소녀';
+    location.href = url;
 </script>
